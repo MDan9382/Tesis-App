@@ -1,0 +1,31 @@
+{
+	admin off
+	auto_https off
+	persist_config off
+}
+
+# Railway asigna el puerto en la variable PORT (3000 si no existe).
+:{$PORT:3000} {
+	root * /srv
+	encode zstd gzip
+
+	# Rutas de React (/lecciones, /progreso…): si el archivo no existe se
+	# entrega index.html y React Router muestra la página correcta.
+	try_files {path} /index.html
+
+	# Los archivos de /assets llevan un hash en el nombre: se pueden guardar
+	# en caché para siempre. Lo demás (index.html) siempre se revisa, así los
+	# estudiantes reciben la versión nueva en cuanto se publica.
+	@assets path /assets/*
+	header @assets Cache-Control "public, max-age=31536000, immutable"
+	@noAssets not path /assets/*
+	header @noAssets Cache-Control "no-cache"
+
+	header {
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		-Server
+	}
+
+	file_server
+}
