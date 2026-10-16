@@ -1,0 +1,82 @@
+.entrar {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 56px 16px 40px;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(147, 197, 253, 0.35), transparent 45%),
+    radial-gradient(circle at 100% 100%, rgba(191, 219, 254, 0.45), transparent 40%),
+    var(--fondo);
+}
+@media (min-height: 760px) { .entrar { align-items: center; padding-top: 40px; } }
+
+.entrar-columna { width: 100%; max-width: 400px; }
+
+.entrar-marca { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding: 0 4px; }
+.entrar-logo { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; color: var(--azul-titulo); }
+.entrar-lema { font-size: 14px; color: var(--gris-texto); }
+
+.entrar-tarjeta { padding: 24px; }
+@media (max-width: 380px) { .entrar-tarjeta { padding: 20px 16px; } }
+
+/* Selector Iniciar sesión / Crear cuenta */
+.segmentos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  padding: 4px;
+  background: var(--azul-fondo);
+  border: 1px solid var(--azul-borde);
+  border-radius: 9px;
+  margin-bottom: 20px;
+}
+.segmento {
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 14px;
+  color: var(--azul);
+  transition: background 0.15s, color 0.15s;
+}
+.segmento.activo { background: var(--azul-nav); color: #fff; font-weight: 600; }
+.segmento:not(.activo):hover { background: var(--azul-borde); }
+
+.boton.boton-google {
+  width: 100%;
+  background: #fff;
+  color: var(--gris-oscuro);
+  border-color: var(--azul-borde-2);
+  font-weight: 500;
+}
+.boton.boton-google:hover:not(:disabled) { background: var(--fondo); border-color: var(--azul-claro); }
+
+.separador {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0;
+  font-size: 12px;
+  color: var(--gris-suave);
+}
+.separador::before, .separador::after { content: ""; flex: 1; height: 1px; background: var(--azul-borde); }
+
+.campo-clave { position: relative; }
+.campo-clave input { padding-right: 72px; }
+.ver-clave {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  color: var(--azul);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+.ver-clave:hover { background: var(--azul-fondo); }
+
+.enlace-volver { display: block; margin: 16px auto 0; }
